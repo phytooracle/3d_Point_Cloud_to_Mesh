@@ -33,10 +33,10 @@ def get_args():
 
 #----------------------------------
 
-def points_to_mesh(cloud):
+def points_to_mesh(p_cloud):
     
     ## Import point cloud
-    pcd = meshio.read(f'{cloud}/combined_multiway_registered.ply')
+    pcd = meshio.read(f'{p_cloud}/combined_multiway_registered.ply')
     
     ## Grabs all of the points that make up the point cloud and cretes a df from the array
     points = pcd.points
@@ -66,9 +66,9 @@ def main():
     if not os.path.isdir(outdir):
         os.makedirs(outdir)
 
-    cloud = args.path
+    p_cloud = args.path
 
-    final_mesh = points_to_mesh(cloud)
+    final_mesh = points_to_mesh(p_cloud)
 
     final_mesh.save(os.path.join(args.outdir, f'{args.path}_mesh.ply'))
     print(f'Done, see outputs in ./{args.outdir}.')
